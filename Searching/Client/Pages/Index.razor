@@ -1,0 +1,103 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<input type="text" placeholder="Enter Name"   @bind-value="title" @bind-value:event="oninput" 
+       @onkeypress="@((KeyboardEventArgs e)=>TitleKeyPress(e))"/>
+
+<input type="text" placeholder="Enter Name" @bind-value="address"
+       @bind-value:event="oninput" 
+       @onkeypress="@((KeyboardEventArgs e)=>TitleKeyPress(e))" />
+
+<button @onclick="Search">Search</button>
+<button @onclick="Clear">Search</button>
+
+@foreach(var i in d)
+            {
+                <h1>Name is : <b>@i.Name</b> From <b>@i.Address</b></h1>
+            }
+
+
+
+@code
+{
+    string title = "";
+    string address = "";
+    private List<MyClass> d;
+
+    private void Search()
+    {
+        d=d.Where(x => x.Name.Contains(title)).ToList();
+        d = d.Where(x => x.Address.Contains(address)).ToList();
+
+    }
+    public void Clear()
+    {
+
+    
+        title = "";
+        address = "";
+    }
+
+    private void TitleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            Search();
+        }
+    }
+
+
+    protected override void OnInitialized()
+    {
+
+        d = new List<MyClass>()
+        {
+            new MyClass(){Name="Aman", Address="Noida"},
+            new MyClass(){Name="Suman", Address="Delhi"},
+            new MyClass(){Name="Ravi", Address="Faridabad"},
+            new MyClass(){Name="Shivam",Address="Noida"},
+            new MyClass(){Name="Anu", Address="Delhi"},
+            new MyClass(){Name="Satyam",Address="Noida"},
+            new MyClass(){Name="Rajnish", Address="Faridabad"},
+            new MyClass(){Name="Madhuri",Address="Noida"},
+            new MyClass(){Name="Preeti", Address="Faridabad"},
+            new MyClass(){Name="Reena", Address="Delhi"},
+            new MyClass(){Name="Aman", Address="Faridabad"},
+            new MyClass(){Name="Suman", Address="Faridabad"},
+            new MyClass(){Name="Ravi", Address="Delhi"},
+            new MyClass(){Name="Shivam", Address="Faridabad"},
+            new MyClass(){Name="Anu",Address="Noida"},
+            new MyClass(){Name="Satyam", Address="Delhi"},
+            new MyClass(){Name="Rajnish", Address="Faridabad"},
+            new MyClass(){Name="Madhuri",Address="Noida"},
+            new MyClass(){Name="Preeti", Address="Faridabad"},
+            new MyClass(){Name="Reena", Address="Faridabad"},
+            new MyClass(){Name="Aman", Address="Delhi"},
+            new MyClass(){Name="Suman", Address="Faridabad"},
+            new MyClass(){Name="Ravi",Address="Noida"},
+            new MyClass(){Name="Shivam", Address="Faridabad"},
+            new MyClass(){Name="Anu", Address="Faridabad"},
+            new MyClass(){Name="Satyam", Address="Faridabad"},
+            new MyClass(){Name="Rajnish", Address="Delhi"},
+            new MyClass(){Name="Madhuri", Address="Faridabad"},
+            new MyClass(){Name="Preeti",Address="Noida"},
+            new MyClass(){Name="Reena", Address="Faridabad"},
+            new MyClass(){Name="Aman", Address="Faridabad"},
+            new MyClass(){Name="Suman", Address="Delhi"},
+            new MyClass(){Name="Ravi", Address="Faridabad"},
+            new MyClass(){Name="Shivam",Address="Noida"},
+            new MyClass(){Name="Anu", Address="Faridabad"},
+            new MyClass(){Name="Satyam", Address="Faridabad"},
+            new MyClass(){Name="Rajnish", Address="Delhi"},
+            new MyClass(){Name="Madhuri", Address="Faridabad"},
+            new MyClass(){Name="Preeti", Address="Faridabad"},
+            new MyClass(){Name="Reena",Address="Noida"},
+        };
+    }
+
+}
